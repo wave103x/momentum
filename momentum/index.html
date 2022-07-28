@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momentum</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
+
 <body>
     <main class="main">
+        <span class="material-icons md-48 arrow-left arrow-for-bg">arrow_back_ios</span>
+        <span class="material-icons md-48 arrow-right arrow-for-bg">arrow_forward_ios</span>
         <section class="top-line">
             <article class="audio">
                 <p>Track</p>
@@ -21,13 +27,22 @@
             </article>
         </section>
         <section class="center-view">
-            <div class="time"> 
+            <div class="time">
             </div>
-            <div class="date"></div>
-            <div class="hello"></div>
+            <div class="center-date"></div>
+            <div class="greetings">
+                <div class="hello"></div>
+                <input class="inputName" type="text" name="nameChoose" autocomplete="off" placeholder="[Enter name]"
+                    oninput="this.size = this.value.length">
+            </div>
         </section>
-        <section class="quotes"></section>
+        <section class="quotes">
+            <div class="quote-text"></div>
+            <div class="quote-author"></div>
+            <span class="material-icons quote-refresh md-48">refresh</span>
+        </section>
     </main>
     <script src="./script.js"></script>
 </body>
+
 </html>

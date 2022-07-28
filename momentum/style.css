@@ -4,11 +4,13 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Lato', arial, sans-serif;
+
 }
 
 .main {
-    background: url("https://raw.githubusercontent.com/wave103x/stage1-tasks/assets/images/morning/02.jpg") no-repeat center / cover;
+    background: no-repeat center / cover #444444;
     height: 100vh;
+    transition: background 0.2s;
 }
 
 .top-line {
@@ -49,7 +51,103 @@ body {
 
 /*      central view         */
 
-.time {
+.center-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     color: white;
+    gap: 1.5rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.time {
+    font-size: 7rem;
+}
+
+.center-date {
     font-size: 2rem;
+}
+
+.greetings {
+    display: flex;
+    gap: 1rem;
+}
+
+.hello {
+    font-size: 3rem;
+    text-align: right;
+}
+
+.inputName {
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.inputName::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 3rem;
+}
+
+.arrow-for-bg {
+    position: absolute;
+    top: 50%;
+    font-size: 3rem;
+    color: white;
+    transform: translateY(-50%);
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.arrow-for-bg:hover {
+    cursor: pointer;
+    color:rgba(255, 255, 255, 0.6)
+}
+
+.arrow-left {
+    left: 2rem;
+}
+
+.arrow-right {
+    right: 2rem;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.quotes {
+    position: absolute;
+    max-width: 40%;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.quote-refresh {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.6);
+    left: 50%;
+    top: -4rem;
+    transform: translateX(-50%);
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.quote-refresh:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.quote-text {
+    margin-bottom: 1rem;
 }
