@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon.ico">
     <title>Momentum</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 </head>
 
@@ -19,7 +21,7 @@
                 <p>Track</p>
             </article>
             <article class="weather">
-                <div class="city-name"></div>
+                <input name="weatherCity" type="text" class="input-weather-city" autocomplete="off" placeholder="[Enter city]" oninput="weatherSearchWord = this.value">
                 <div class="weather-icon"></div>
                 <div class="temperature"></div>
                 <div class="wind-speed"></div>
@@ -31,9 +33,9 @@
             </div>
             <div class="center-date"></div>
             <div class="greetings">
-                <div class="hello"></div>
+                <div class="hello-to-name"></div>
                 <input class="inputName" type="text" name="nameChoose" autocomplete="off" placeholder="[Enter name]"
-                    oninput="this.size = this.value.length">
+                    oninput="if (this.value) {localStorage.setItem('myName', this.value.toString());this.size = this.value.length;} else this.size = 8;">
             </div>
         </section>
         <section class="quotes">

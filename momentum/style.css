@@ -8,9 +8,10 @@ body {
 }
 
 .main {
-    background: no-repeat center / cover #444444;
+    background: no-repeat center / cover #666;
     height: 100vh;
-    transition: background 0.2s;
+    background-blend-mode: overlay;
+    transition: background 0.8s;
 }
 
 .top-line {
@@ -19,15 +20,20 @@ body {
     font-size: 1.25rem;
 }
 
+.visible-hide {
+    visibility: hidden;
+}
+
 /*      weather         */
 
 .weather {
     margin-left: auto;
-    min-width: 15%;
+    min-width: 10%;
     color: white;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    font-size: calc(0.7rem + 0.4vw);
 }
 
 .weather-icon {
@@ -35,18 +41,30 @@ body {
     width: 72px;
 }
 
-.city-name {
+.input-weather-city {
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    font-size: inherit;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    position: relative;
+    bottom: -2px;
     border-bottom: 2px solid white;
     padding-bottom: 0.5rem;
 }
+
+.input-weather-city::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: inherit;
+}
+
 
 /*      audio         */
 
 .audio {
     min-width: 15%;
 }
-
-
 
 
 /*      central view         */
@@ -57,28 +75,29 @@ body {
     align-items: center;
     flex-direction: column;
     color: white;
-    gap: 1.5rem;
+    gap: 1vw;
     position: absolute;
-    left: 50%;
+    width: 100%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
 }
 
 .time {
-    font-size: 7rem;
+    font-size: calc(1rem + 4vw);
+    font-weight: bold;
 }
 
 .center-date {
-    font-size: 2rem;
+    font-size: calc(1rem + 0.5vw);
 }
 
 .greetings {
     display: flex;
+    font-size: calc(1rem + 1.2vw);
     gap: 1rem;
 }
 
-.hello {
-    font-size: 3rem;
+.hello-to-name {
     text-align: right;
 }
 
@@ -86,28 +105,32 @@ body {
     background-color: rgba(255, 255, 255, 0);
     outline: none;
     border: none;
-    font-size: 3rem;
+    font-size: inherit;
     color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    position: relative;
+    bottom: -2px;
 }
 
 .inputName::placeholder {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 3rem;
+    font-size: inherit;
 }
 
 .arrow-for-bg {
     position: absolute;
     top: 50%;
     font-size: 3rem;
-    color: white;
+    color: rgba(255, 255, 255, 0.6);
     transform: translateY(-50%);
     user-select: none;
     transition: color 0.2s;
+    z-index: 2;
 }
 
 .arrow-for-bg:hover {
     cursor: pointer;
-    color:rgba(255, 255, 255, 0.6)
+    color:white;
 }
 
 .arrow-left {
@@ -124,7 +147,7 @@ body {
 
 .quotes {
     position: absolute;
-    max-width: 40%;
+    width: clamp(300px, 40%, 800px);
     left: 50%;
     bottom: 2rem;
     transform: translateX(-50%);
@@ -151,3 +174,4 @@ body {
 .quote-text {
     margin-bottom: 1rem;
 }
+
