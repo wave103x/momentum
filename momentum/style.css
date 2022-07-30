@@ -11,7 +11,7 @@ body {
     background: no-repeat center / cover #666;
     height: 100vh;
     background-blend-mode: overlay;
-    transition: background 0.8s;
+    transition: background 0.5s;
 }
 
 .top-line {
@@ -121,17 +121,11 @@ body {
     position: absolute;
     top: 50%;
     font-size: 3rem;
-    color: rgba(255, 255, 255, 0.6);
     transform: translateY(-50%);
-    user-select: none;
-    transition: color 0.2s;
     z-index: 2;
 }
 
-.arrow-for-bg:hover {
-    cursor: pointer;
-    color:white;
-}
+
 
 .arrow-left {
     left: 2rem;
@@ -147,31 +141,38 @@ body {
 
 .quotes {
     position: absolute;
-    width: clamp(300px, 40%, 800px);
+    width: clamp(300px, 50%, 900px);
     left: 50%;
     bottom: 2rem;
     transform: translateX(-50%);
     color: white;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
     text-align: center;
 }
 
 .quote-refresh {
     position: absolute;
-    color: rgba(255, 255, 255, 0.6);
     left: 50%;
     top: -4rem;
     transform: translateX(-50%);
+}
+
+.quote-text {
+    margin-bottom: 0.5rem;
+}
+
+.icon-button {
+    color: rgba(255, 255, 255, 0.6);
     user-select: none;
     transition: color 0.2s;
 }
 
-.quote-refresh:hover {
+.icon-button:hover {
     cursor: pointer;
     color: white;
 }
 
-.quote-text {
-    margin-bottom: 1rem;
+.icon-button:active {
+    color: rgba(255, 255, 255, 0.6);
 }
-

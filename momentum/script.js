@@ -24,7 +24,6 @@ function weatherUpdate(city='Minsk') {
     })
         .then(function (response) { return response.json() })
         .then(response => {
-            // document.querySelector('.city-name').textContent = response.resolvedAddress;
             document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg; ' + response.currentConditions.conditions;
             document.querySelector('.wind-speed').textContent = 'Wind speed: ' + response.currentConditions.windspeed + 'm/s';
             document.querySelector('.humidity').textContent = 'Humidity: ' + response.currentConditions.humidity + '%';
@@ -113,7 +112,7 @@ if (localStorage.getItem('myName')) {
 
 
 /*      quoters     */
-
+function getQuote() {
 fetch(`https://favqs.com/api/qotd`, {
     "method": "GET",
     "headers": {}
@@ -129,3 +128,7 @@ fetch(`https://favqs.com/api/qotd`, {
     .catch(err => {
         console.error(err);
     });
+}
+getQuote();
+
+document.querySelector('.quote-refresh').addEventListener('click', () => getQuote());
