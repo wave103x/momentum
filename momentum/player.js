@@ -9,6 +9,7 @@ const volumeBar = document.querySelector('.volume-bar');
 const audioName = document.querySelector('.audio-name');
 const timeDuration = document.querySelector('.time-duration');
 const timePassed = document.querySelector('.time-passed');
+const volumeIcon = document.querySelector('.volume-icon');
 
 playpause.addEventListener('click', () => {
    if (audio.paused) audio.play();
@@ -23,6 +24,10 @@ audioName.addEventListener('click', () => {
 volumeBar.addEventListener('input', (e) => {
    audio.volume = volumeBar.value / 10;
    console.log(audio.volume);
+})
+
+volumeIcon.addEventListener('click', () => {
+   audio.muted = !audio.muted;
 })
 
 audio.addEventListener('timeupdate', () => {
@@ -46,7 +51,6 @@ function getName(audioUrl) {
 audioName.textContent = getName(audio.src);
 
 audio.addEventListener('loadedmetadata', () => {
-   // timeDuration.textContent = Math.trunc(audio.duration);
    timeDuration.textContent = toMMSS(audio.duration);
 })
 

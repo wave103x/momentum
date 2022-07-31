@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon.ico">
     <title>Audio!</title>
     <link rel="stylesheet" href="./style-player.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -20,9 +22,13 @@
                 <progress class="progress" value="0" min="0"></progress>
                 <div class="track-duration">
                     <p class="time-passed">0:00</p>
+                    <p>/</p>
                     <p class="time-duration"></p>
                 </div>
             </div>
+            <button class="volume-icon" type="button"><span class="material-icons">
+                volume_up
+                </span></button>
             <input class="volume-bar" type="range" min="0" max="10">
         </div>
     </figure>

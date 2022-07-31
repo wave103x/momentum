@@ -1,3 +1,8 @@
 .audio-name {
    cursor: pointer;
 }
+
+.track-duration {
+   display: flex;
+   gap: 0.375rem;
+}
