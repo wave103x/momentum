@@ -17,7 +17,7 @@ weatherWordInput.addEventListener('keyup', e => {
 })
 
 function weatherUpdate(city='Minsk') {
-    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=4BSGFC52XJ96N6F5WJFYM8M4P&contentType=json`, {
+    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&lang=en&key=4BSGFC52XJ96N6F5WJFYM8M4P&contentType=json`, {
         "method": "GET",
         "headers": {
         }
@@ -27,7 +27,7 @@ function weatherUpdate(city='Minsk') {
             document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg; ' + response.currentConditions.conditions;
             document.querySelector('.wind-speed').textContent = 'Wind speed: ' + response.currentConditions.windspeed + 'm/s';
             document.querySelector('.humidity').textContent = 'Humidity: ' + response.currentConditions.humidity + '%';
-            document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/1st%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
+            // document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/1st%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
         })
         .catch(err => {
             console.error(err);
@@ -55,7 +55,7 @@ fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uG
     .then(response => {
         console.log(response);
 
-        let imgIndex = 0;
+        let imgIndex = Math.trunc(Math.random() * 10);
         document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
 
         document.querySelector('.arrow-left').addEventListener('click', () => {
@@ -98,8 +98,8 @@ const dateUpdate = () => {
     if (+hours >= 18 && +hours < 24) sayHello.textContent = 'Good evening,';
     if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
 }
-// dateUpdate();
-setInterval(dateUpdate, 1000);
+dateUpdate();
+// setInterval(dateUpdate, 1000);
 
 //get unputed name and update input width
 const inputName = document.querySelector('.inputName');

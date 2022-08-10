@@ -9,27 +9,49 @@
     <title>Audio!</title>
     <link rel="stylesheet" href="./style-player.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 </head>
 
 <body>
     <figure class="audio-container">
-        <audio class="audio" controls src="./assets/pandora.mp3" preload="metadata"></audio>
+        <audio class="audio" preload="metadata">
+            <source src="./assets/pandora.mp3" data-track-number="1" data-track-name="EPEC">
+            <source src="./assets/track2.mp3" data-track-number="2" data-track-name="track 1">
+            <source src="./assets/track3.mp3" data-track-number="3" data-track-name="Altin">
+            <source src="./assets/track4.mp3" data-track-number="4" data-track-name="track 3">
+            <source src="./assets/track5.mp3" data-track-number="5" data-track-name="track 4">
+            Your browser doesn't support html5.
+        </audio>
         <div class="audio-controls">
-            <button class="playpause" type="button">Play/Pause</button>
+            <button class="playpause" type="button"><span class="material-symbols-outlined ">
+                play_arrow
+            </span></button>
             <div class="progress-div">
-                <p class="audio-name"></p>
-                <progress class="progress" value="0" min="0"></progress>
+                <div class="track-name"></div>
+                <progress class="progress" value="0"></progress>
                 <div class="track-duration">
-                    <p class="time-passed">0:00</p>
-                    <p>/</p>
-                    <p class="time-duration"></p>
+                    <div class="time-passed">0:00</div>
+                    <div>/</div>
+                    <div class="time-duration"></div>
                 </div>
             </div>
-            <button class="volume-icon" type="button"><span class="material-icons">
-                volume_up
-                </span></button>
-            <input class="volume-bar" type="range" min="0" max="10">
+            <div class="volume-block">
+                <button class="volume-icon" type="button"><span class="material-icons">
+                        volume_up
+                    </span></button>
+                <input class="volume-bar" type="range" min="0" max="10" value="10">
+            </div>
+            <div>
+                <button class="track-switch prev-track" type="button"><span class="material-symbols-outlined">
+                        arrow_back
+                    </span></button>
+                <button class="track-switch next-track" type="button"><span class="material-symbols-outlined">
+                        arrow_forward
+                    </span></button>
+            </div>
+
+            <div class="playlist"></div>
         </div>
     </figure>
     <script src="./player.js"></script>
