@@ -1,3 +1,6 @@
+import './style.css';
+import './style-player.css';
+
 /*      weather          */
 const weatherWordInput = document.querySelector('.input-weather-city');
 let weatherSearchWord = '';
@@ -65,7 +68,8 @@ fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uG
         document.querySelector('.arrow-right').addEventListener('click', () => {
             imgIndex < 1 ? imgIndex = 9 : imgIndex--;
             document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
-        })
+        });
+        let img;
         for (let i = 0; i < response.results.length; i++) {
             img = new Image();
             img.onload = function () { };

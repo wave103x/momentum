@@ -1,3 +1,6 @@
+const list = require.context('./', true, /\.mp3$/i);
+
+
 const audioContainer = document.querySelector('.audio-container');
 const audio = document.querySelector('.audio');
 const audioControls = document.querySelector('.audio-controls');
@@ -74,8 +77,8 @@ function getName() {
 }
 
 function toMMSS(num) {
-   sec = String(Math.trunc(num % 60)).padStart(2, '0');
-   mins = Math.trunc(num / 60);
+   let sec = String(Math.trunc(num % 60)).padStart(2, '0');
+   let mins = Math.trunc(num / 60);
    return `${mins}:${sec}`;
 }
 
@@ -95,11 +98,11 @@ audio.addEventListener('ended', () => {
 function setTrack() {
    if (currentTrack > trackList.length - 1) currentTrack = 0;
    if (currentTrack < 0) currentTrack = trackList.length - 1;
-   let songURL = audio.children[currentTrack].src;
+   // let songURL = audio.children[currentTrack].src;
+   let songURL = list.keys()[currentTrack];
    audio.setAttribute('src', songURL);
    audio.load();
 }
-
 setTrack();
 
 nextTrackBtn.addEventListener('click', () => {
@@ -165,4 +168,3 @@ for (let i = 0; i < rowPlayBtn.length; i++) {
       else rowPlayBtn[i].firstElementChild.textContent = 'pause';
    });
 }
-
