@@ -1,25 +1,41 @@
 import './style.css';
 import './style-player.css';
 
+
 /*      weather          */
 const weatherWordInput = document.querySelector('.input-weather-city');
 let weatherSearchWord = '';
 
 weatherWordInput.addEventListener('keyup', e => {
     if (e.key === 'Enter' || e.keyCode === 13) {
+        weatherSearchWord = weatherWordInput.value;
         if (weatherSearchWord === '' || weatherSearchWord === null) {
             document.querySelector('.temperature').textContent = 'Invalid city';
+            document.querySelector('.weather-icon').textContent = '';
+            document.querySelector('.weather-icon').style.width = '1px';
             document.querySelector('.wind-speed').textContent = '';
             document.querySelector('.humidity').textContent = '';
+            document.querySelector('.conditions').textContent = '';
+            localStorage.removeItem('weatherCity');
         } else {
-            localStorage.setItem('weatherCity', JSON.stringify(weatherSearchWord));
+            weatherSearchWord = weatherSearchWord[0].toUpperCase() + weatherSearchWord.slice(1);
             weatherUpdate(weatherSearchWord);
+            weatherWordInput.value = weatherSearchWord;
+            localStorage.setItem('weatherCity', JSON.stringify(weatherSearchWord));
         }
     }
 
-})
+});
 
-function weatherUpdate(city='Minsk') {
+if (localStorage.getItem('weatherCity')) {
+    weatherWordInput.value = JSON.parse(localStorage.getItem('weatherCity'));
+    weatherUpdate(JSON.parse(localStorage.getItem('weatherCity')));
+} else {
+    weatherUpdate('Minsk');
+    weatherWordInput.value = 'Minsk';
+}
+
+function weatherUpdate(city = 'Minsk') {
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&lang=en&key=4BSGFC52XJ96N6F5WJFYM8M4P&contentType=json`, {
         "method": "GET",
         "headers": {
@@ -27,19 +43,17 @@ function weatherUpdate(city='Minsk') {
     })
         .then(function (response) { return response.json() })
         .then(response => {
-            document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg; ' + response.currentConditions.conditions;
-            document.querySelector('.wind-speed').textContent = 'Wind speed: ' + response.currentConditions.windspeed + 'm/s';
-            document.querySelector('.humidity').textContent = 'Humidity: ' + response.currentConditions.humidity + '%';
-            // document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/1st%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
+            console.log(response);
+            document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg;';
+            document.querySelector('.conditions').innerHTML = response.currentConditions.conditions;
+            document.querySelector('.wind-speed').innerHTML = '<span class="opacity70">Wind speed:</span> ' + response.currentConditions.windspeed + 'm/s';
+            document.querySelector('.humidity').innerHTML = '<span class="opacity70">Humidity:</span> ' + response.currentConditions.humidity + '%';
+            document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/2nd%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
         })
         .catch(err => {
             console.error(err);
         });
 }
-if (localStorage.getItem('weatherCity')) {
-    weatherWordInput.value = JSON.parse(localStorage.getItem('weatherCity'));
-    weatherUpdate(JSON.parse(localStorage.getItem('weatherCity')));
-} else weatherUpdate();
 
 
 /*      backgorund       */
@@ -56,8 +70,6 @@ fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uG
 })
     .then(response => response.json())
     .then(response => {
-        console.log(response);
-
         let imgIndex = Math.trunc(Math.random() * 10);
         document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
 
@@ -103,7 +115,7 @@ const dateUpdate = () => {
     if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
 }
 dateUpdate();
-// setInterval(dateUpdate, 1000);
+setInterval(dateUpdate, 1000);
 
 //get unputed name and update input width
 const inputName = document.querySelector('.inputName');
@@ -117,21 +129,20 @@ if (localStorage.getItem('myName')) {
 
 /*      quoters     */
 function getQuote() {
-fetch(`https://favqs.com/api/qotd`, {
-    "method": "GET",
-    "headers": {}
-})
-    .then(response => response.json())
-    .then(response => {
-        console.log(response);
-        let quoteText = document.querySelector('.quote-text');
-        let quoteAuthor = document.querySelector('.quote-author');
-        quoteText.textContent = '" ' + response.quote.body + ' "';
-        quoteAuthor.textContent = '" ' + response.quote.author + ' "';
+    fetch(`https://favqs.com/api/qotd`, {
+        "method": "GET",
+        "headers": {}
     })
-    .catch(err => {
-        console.error(err);
-    });
+        .then(response => response.json())
+        .then(response => {
+            let quoteText = document.querySelector('.quote-text');
+            let quoteAuthor = document.querySelector('.quote-author');
+            quoteText.textContent = '" ' + response.quote.body + ' "';
+            quoteAuthor.textContent = '" ' + response.quote.author + ' "';
+        })
+        .catch(err => {
+            console.error(err);
+        });
 }
 getQuote();
 

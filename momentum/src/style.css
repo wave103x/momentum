@@ -8,7 +8,7 @@ body {
 }
 
 .main {
-    background: no-repeat center / cover #666;
+    background: no-repeat center / cover #555;
     height: 100vh;
     background-blend-mode: overlay;
     transition: background 0.5s;
@@ -16,8 +16,10 @@ body {
 
 .top-line {
     display: flex;
-    padding: 2rem 3rem;
+    padding: 2vw;
     font-size: 1.25rem;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 .visible-hide {
@@ -27,36 +29,56 @@ body {
 /*      weather         */
 
 .weather {
-    margin-left: auto;
-    min-width: 10%;
     color: white;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    font-size: calc(0.7rem + 0.4vw);
+    font-size: calc(0.5rem + 0.4vw);
+    width: min(50%, 180px);
+}
+
+.temp-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .weather-icon {
     filter: invert(100%);
-    width: 72px;
+    width: 64px;
+}
+
+.temp-conditions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    width: min-content;
+}
+
+.temperature {
+    font-size: 2rem;
 }
 
 .input-weather-city {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.2);
     outline: none;
     border: none;
     font-size: inherit;
     color: rgba(255, 255, 255, 0.8);
-    padding: 0;
     position: relative;
-    bottom: -2px;
-    border-bottom: 2px solid white;
-    padding-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 8px 0 8px 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input-weather-city::placeholder {
     color: rgba(255, 255, 255, 0.8);
     font-size: inherit;
+}
+
+.opacity70 {
+    opacity: 0.7;
 }
 
 
@@ -137,6 +159,10 @@ body {
 
 .material-symbols-outlined.md-48 {
     font-size: 48px;
+}
+
+.material-symbols-outlined.md-30 {
+    font-size: 30px;
 }
 
 .quotes {

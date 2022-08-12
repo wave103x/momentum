@@ -1,6 +1,5 @@
 const list = require.context('./', true, /\.mp3$/i);
 
-
 const audioContainer = document.querySelector('.audio-container');
 const audio = document.querySelector('.audio');
 const audioControls = document.querySelector('.audio-controls');
@@ -70,6 +69,11 @@ progress.addEventListener('click', (e) => {
 audio.addEventListener('loadedmetadata', () => {
    timeDuration.textContent = toMMSS(audio.duration);
    currentTrackName.textContent = getName();
+   for (let i of rowPlayBtn) {
+      i.classList.remove('track-playing');
+   }
+   rowPlayBtn[currentTrack].classList.add('track-playing');
+   // rowPlayBtn[currentTrack].trackLength.textContent = '123';
 })
 
 function getName() {
@@ -98,7 +102,6 @@ audio.addEventListener('ended', () => {
 function setTrack() {
    if (currentTrack > trackList.length - 1) currentTrack = 0;
    if (currentTrack < 0) currentTrack = trackList.length - 1;
-   // let songURL = audio.children[currentTrack].src;
    let songURL = list.keys()[currentTrack];
    audio.setAttribute('src', songURL);
    audio.load();
@@ -128,19 +131,21 @@ const playlist = document.querySelector('.playlist');
 
 for (let i = 0; i < trackList.length; i++) {
    const newRow = document.createElement('div');
-   newRow.classList.add = 'playlist-row';
+   newRow.classList.add('playlist-row');
    newRow.innerHTML = `<button type="button" class="row-play-btn">
    <span class="material-symbols-outlined">
    play_arrow
    </span>
    </button>
-   <div class="track-title"></div>`;
+   <div class="track-title"></div>
+   <div class="track-length"></div>`;
    newRow.children[1].textContent = trackList[i].getAttribute('data-track-name');
    playlist.appendChild(newRow);
 }
 
 const rowPlayBtn = document.querySelectorAll('.row-play-btn');
 const trackName = document.querySelectorAll('.track-title');
+const trackLength = document.querySelectorAll('.track-length');
 
 for (let i = 0; i < rowPlayBtn.length; i++) {
    rowPlayBtn[i].addEventListener('click', () => {
@@ -167,4 +172,8 @@ for (let i = 0; i < rowPlayBtn.length; i++) {
       if (audio.paused) rowPlayBtn[i].firstElementChild.textContent = 'play_arrow';
       else rowPlayBtn[i].firstElementChild.textContent = 'pause';
    });
+};
+
+for (let i = 0; i < trackList.length; i++) {
+   trackLength[i].textContent = toMMSS(trackList[i].getAttribute('data-duration'));
 }
