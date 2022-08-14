@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', arial, sans-serif;
+
+}
+
+.deeds-btn {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 4px;
+    color: white;
+    background-color: darkgray;
+}
+
+.deeds {
+    padding: 4px 8px;
+    color: white;
+    background-color: darkgray;
+}
+
+.deeds_position {
+    position: absolute;
+    right: 1rem;
+    bottom: 3rem;
+}
+
+.deeds__window {
+    width: 300px;
+    height: 400px;
+    background-color:  darkslategray;
+    margin-bottom: 4px;
+}
+
+.window-task {
+    display: flex;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(255,255,255, 0.2);
+    position: relative;
+}
+
+.window-task__btn-edit {
+    margin-left: auto;
+}
+
+.window-task__modal-edit {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    background-color: brown;
+}
+
+.window-tabs {
+    background-color: black;
+    display: flex;
+}

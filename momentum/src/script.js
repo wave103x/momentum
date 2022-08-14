@@ -115,7 +115,7 @@ const dateUpdate = () => {
     if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
 }
 dateUpdate();
-setInterval(dateUpdate, 1000);
+// setInterval(dateUpdate, 1000);
 
 //get unputed name and update input width
 const inputName = document.querySelector('.inputName');
@@ -137,8 +137,8 @@ function getQuote() {
         .then(response => {
             let quoteText = document.querySelector('.quote-text');
             let quoteAuthor = document.querySelector('.quote-author');
-            quoteText.textContent = '" ' + response.quote.body + ' "';
-            quoteAuthor.textContent = '" ' + response.quote.author + ' "';
+            quoteText.textContent = '"' + response.quote.body + '"';
+            quoteAuthor.textContent = response.quote.author;
         })
         .catch(err => {
             console.error(err);
@@ -147,3 +147,17 @@ function getQuote() {
 getQuote();
 
 document.querySelector('.quote-refresh').addEventListener('click', () => getQuote());
+
+document.querySelector('.quotes').addEventListener('mouseover', e => {
+    document.querySelector('.quote-refresh').classList.add('quote-active');
+})
+document.querySelector('.quotes').addEventListener('mouseleave', e => {
+    document.querySelector('.quote-refresh').classList.remove('quote-active');
+})
+
+document.querySelector('.quotes').addEventListener('mouseover', e => {
+    document.querySelector('.quotes').classList.add('quotes-text-active');
+})
+document.querySelector('.quotes').addEventListener('mouseleave', e => {
+    document.querySelector('.quotes').classList.remove('quotes-text-active');
+})
