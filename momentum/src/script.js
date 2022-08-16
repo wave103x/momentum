@@ -1,6 +1,8 @@
 import './style.css';
 import './style-player.css';
 import './deeds.css';
+import Icon from './assets/githubLogo.svg'
+import Icon2 from './assets/rs_school_js.svg'
 
 
 /*      weather          */
@@ -46,8 +48,8 @@ function weatherUpdate(city = 'Minsk') {
         .then(response => {
             document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg;';
             document.querySelector('.conditions').innerHTML = response.currentConditions.conditions;
-            document.querySelector('.wind-speed').innerHTML = '<span class="opacity70">Wind speed:</span> ' + response.currentConditions.windspeed + 'm/s';
-            document.querySelector('.humidity').innerHTML = '<span class="opacity70">Humidity:</span> ' + response.currentConditions.humidity + '%';
+            document.querySelector('.wind-speed').innerHTML = '<span class="opacity70">Wind speed:</span> ' + Math.round(response.currentConditions.windspeed) + 'm/s';
+            document.querySelector('.humidity').innerHTML = '<span class="opacity70">Humidity:</span> ' + Math.round(response.currentConditions.humidity) + '%';
             document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/1st%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
         })
         .catch(err => {
@@ -63,35 +65,63 @@ if (+hours >= 6 && +hours < 12) bgSearchWord = 'morning';
 if (+hours >= 12 && +hours < 18) bgSearchWord = 'afternoon';
 if (+hours >= 18 && +hours < 24) bgSearchWord = 'evening';
 if (+hours >= 0 && +hours < 6) bgSearchWord = 'night';
-fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uGY17bGixkwPCRtDhfelM4l79HtvEwHTnAaBOz6KMko`, {
-    "method": "GET",
-    "headers": {},
 
+let bgNum = Math.trunc(Math.random() * (21 - 1) + 1) + '';
+bgNum = bgNum.padStart(2, '0');
+document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
+
+let images = [];
+for (let i = 1, j = 1; i < 21; i++) {
+    j = String(i).padStart(2, '0');
+    images[i] = new Image();
+    images[i].src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${j}.jpg`;
+}
+
+
+document.querySelector('.arrow-left').addEventListener('click', () => {
+    bgNum = +bgNum;
+    bgNum === 1 ? bgNum = 20 : bgNum--;
+    bgNum = String(bgNum).padStart(2, '0');
+    document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
 })
-    .then(response => response.json())
-    .then(response => {
-        let imgIndex = Math.trunc(Math.random() * 10);
-        document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
 
-        document.querySelector('.arrow-left').addEventListener('click', () => {
-            imgIndex > 8 ? imgIndex = 0 : imgIndex++;
-            document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
-        })
-        document.querySelector('.arrow-right').addEventListener('click', () => {
-            imgIndex < 1 ? imgIndex = 9 : imgIndex--;
-            document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
-        });
-        let img;
-        for (let i = 0; i < response.results.length; i++) {
-            img = new Image();
-            img.onload = function () { };
-            img.src = response.results[i].urls.regular;
-        }
-    })
+document.querySelector('.arrow-right').addEventListener('click', () => {
+    bgNum = +bgNum;
+    bgNum === 20 ? bgNum = 1 : bgNum++;
+    bgNum = String(bgNum).padStart(2, '0');
+    document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
+})
 
-    .catch(err => {
-        console.error(err);
-    });
+
+
+// fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uGY17bGixkwPCRtDhfelM4l79HtvEwHTnAaBOz6KMko`, {
+//     "method": "GET",
+//     "headers": {},
+// })
+//     .then(response => response.json())
+//     .then(response => {
+//         let imgIndex = Math.trunc(Math.random() * 10);
+//         document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
+
+//         document.querySelector('.arrow-left').addEventListener('click', () => {
+//             imgIndex > 8 ? imgIndex = 0 : imgIndex++;
+//             document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
+//         })
+//         document.querySelector('.arrow-right').addEventListener('click', () => {
+//             imgIndex < 1 ? imgIndex = 9 : imgIndex--;
+//             document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
+//         });
+//         let img;
+//         for (let i = 0; i < response.results.length; i++) {
+//             img = new Image();
+//             img.onload = function () { };
+//             img.src = response.results[i].urls.regular;
+//         }
+//     })
+
+//     .catch(err => {
+//         console.error(err);
+//     });
 
 
 
@@ -115,7 +145,7 @@ const dateUpdate = () => {
     if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
 }
 dateUpdate();
-// setInterval(dateUpdate, 1000);
+setInterval(dateUpdate, 1000);
 
 //get unputed name and update input width
 const inputName = document.querySelector('.inputName');

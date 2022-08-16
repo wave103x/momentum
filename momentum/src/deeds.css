@@ -4,8 +4,8 @@
     color: white;
     position: absolute;
     display: flex;
-    right: 1rem;
-    bottom: 1rem;
+    right: 1vw;
+    bottom: 1vw;
     flex-direction: row-reverse;
     gap: 2rem;
     font-family: 'Lato', arial, sans-serif;
