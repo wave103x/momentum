@@ -19,7 +19,7 @@ body {
     padding: 1vw;
     font-size: 1.25rem;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 4vw;
 }
 
 .visible-hide {
@@ -41,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .weather-icon {
@@ -170,7 +171,7 @@ body {
     line-height: calc(0.7rem + 0.4vw);
     text-align: center;
     transition: 0.3s ease-out;
-    padding: 1.25rem 0 0 0;
+    padding: 2rem 0 0 0;
 }
 
 .quotes-text-active {

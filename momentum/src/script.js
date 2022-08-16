@@ -1,5 +1,6 @@
 import './style.css';
 import './style-player.css';
+import './deeds.css';
 
 
 /*      weather          */
@@ -43,12 +44,11 @@ function weatherUpdate(city = 'Minsk') {
     })
         .then(function (response) { return response.json() })
         .then(response => {
-            console.log(response);
             document.querySelector('.temperature').innerHTML = response.currentConditions.feelslike + '&deg;';
             document.querySelector('.conditions').innerHTML = response.currentConditions.conditions;
             document.querySelector('.wind-speed').innerHTML = '<span class="opacity70">Wind speed:</span> ' + response.currentConditions.windspeed + 'm/s';
             document.querySelector('.humidity').innerHTML = '<span class="opacity70">Humidity:</span> ' + response.currentConditions.humidity + '%';
-            document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/2nd%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
+            document.querySelector('.weather-icon').innerHTML = `<img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/73c8cc581d8d35076b47047088f3bc91cb1dd675/SVG/1st%20Set%20-%20Monochrome/${response.currentConditions.icon}.svg">`;
         })
         .catch(err => {
             console.error(err);
@@ -129,16 +129,15 @@ if (localStorage.getItem('myName')) {
 
 /*      quoters     */
 function getQuote() {
-    fetch(`https://favqs.com/api/qotd`, {
+    fetch(`https://www.breakingbadapi.com/api/quotes`, {
         "method": "GET",
         "headers": {}
     })
         .then(response => response.json())
         .then(response => {
-            let quoteText = document.querySelector('.quote-text');
-            let quoteAuthor = document.querySelector('.quote-author');
-            quoteText.textContent = '"' + response.quote.body + '"';
-            quoteAuthor.textContent = response.quote.author;
+            let rand = Math.trunc(0 + Math.random() * (71 + 1 - 0));
+            document.querySelector('.quote-text').textContent = '"' + response[rand].quote + '"';
+            document.querySelector('.quote-author').textContent = response[rand].author;
         })
         .catch(err => {
             console.error(err);

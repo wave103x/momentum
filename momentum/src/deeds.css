@@ -1,45 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
 
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Lato', arial, sans-serif;
 
-}
-
-.deeds-btn {
+.features {
+    color: white;
     position: absolute;
+    display: flex;
     right: 1rem;
     bottom: 1rem;
-    padding: 4px;
-    color: white;
-    background-color: darkgray;
+    flex-direction: row-reverse;
+    gap: 2rem;
+    font-family: 'Lato', arial, sans-serif;
 }
 
-.deeds {
-    padding: 4px 8px;
-    color: white;
-    background-color: darkgray;
-}
-
-.deeds_position {
-    position: absolute;
-    right: 1rem;
-    bottom: 3rem;
-}
-
-.deeds__window {
-    width: 300px;
-    height: 400px;
-    background-color:  darkslategray;
-    margin-bottom: 4px;
-}
-
-.window-task {
+.feature {
     display: flex;
-    padding: 4px 8px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 1rem;
+    width: 300px;
+}
+
+.feature__btn_style {
+    background-color: rgba(0,0,0, 0.2);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 24px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.feature__btn_style:hover {
+    background-color: rgba(0,0,0, 0.4);
+}
+
+.feature__window {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    min-width: 100px;
+    background-color: rgba(0,0,0, 0.5);
+    padding: 12px 12px;
+    border-radius: 8px;
+    transform: translateY(50px);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 60%;
+}
+
+.feature__window_active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature__form {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+}
+
+.feature__item {
+    display: flex;
+    padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255, 0.2);
     position: relative;
+    align-items: center;
+    min-height: 44px;
+    box-sizing: border-box;
+}
+
+.window-btn {
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: 0.2s;
+}
+
+
+
+.checkbox_active {
+    color: rgba(255,255,255, 0.6);
+    text-decoration: line-through;
+}
+
+.window-btn:hover {
+    color: rgba(255,255,255, 0.6);
+}
+
+.task-checkbox {
+    margin-right: 8px;
 }
 
 .window-task__btn-edit {
@@ -54,7 +112,58 @@ body {
     background-color: brown;
 }
 
-.window-tabs {
-    background-color: black;
+.window-task__value {
+    flex-grow: 1;
+}
+
+.feature__input-text {
+    background-color: rgba(255,255,255, 0.2);
+    border-radius: 8px;
+    color: white;
+    padding: 6px 8px;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    min-width: 100px;
+}
+
+.feature__input-text::placeholder {
+    color: rgba(255,255,255, 0.4);
+}
+
+
+
+
+
+/* links             */
+
+.links {
+    margin-right: -42%;
+}
+
+
+.links__window {
+    position: relative;
+    background-color: darkgray;
+    padding: 4px 8px;
+}
+
+
+
+.window-link {
     display: flex;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(255,255,255, 0.2);
+    position: relative;
+    align-items: center;
+}
+
+.window-link__btn-edit {
+    margin-left: auto;
+}
+
+.link-favicon {
+    max-width: 16px;
+    height: fit-content;
+    margin-right: 6px;
 }

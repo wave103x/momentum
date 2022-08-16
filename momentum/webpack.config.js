@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         script: '/src/script.js',
         player: './src/player.js',
+        deeds: './src/deeds.js',
     },
     devtool: 'inline-source-map',
     plugins: [
