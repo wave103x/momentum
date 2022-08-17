@@ -1,11 +1,6 @@
 
 //task manager
 
-// if (localStorage.getItem('deeds-active')) {
-//     document.querySelector('.deeds-window__tasks').classList.add('feature__window_active');
-//     document.querySelector('.links-window').classList.remove('feature__window_active');
-// }
-
 document.querySelector('.deeds__btn').onclick = () => {
     document.querySelector('.deeds-window__tasks').classList.toggle('feature__window_active');
     document.querySelector('.links-window').classList.remove('feature__window_active');
@@ -18,6 +13,8 @@ document.querySelector('.links__btn').onclick = () => {
 
 const inputTask = document.querySelector('.deeds__input-task');
 const inputAddBtn = document.querySelector('.deeds__add-task-btn');
+
+let arrTasksQty = [];
 
 if (localStorage.getItem('arrTaskQty')) {
     arrTasksQty = JSON.parse(localStorage.getItem('arrTaskQty'));
@@ -61,7 +58,7 @@ function createTask(taskText) {
     </div>`;
     document.querySelector('.deeds-window__tasks').insertBefore(newTask, document.querySelector('.form-new-task'));
 
-    windowTasks = document.querySelectorAll('.window-task');
+    let windowTasks = document.querySelectorAll('.window-task');
     let delBtns = document.querySelectorAll('.window-task__btn-del');
     for (let i = 0; i < delBtns.length; i++) {
         delBtns[i].onclick = () => {
@@ -131,16 +128,14 @@ function createTask(taskText) {
 const addLinkBtn = document.querySelector('.links__add-link-btn');
 const newLinkInput = document.querySelector('.links__input-url');
 let linksArr = [];
-
+let linksObj = {};
 if (localStorage.getItem('linksObj')) {
     linksObj = JSON.parse(localStorage.getItem('linksObj'));
     for (let i of Object.values(linksObj)) {
         createLink(i)
     }
 }
-else {
-    linksObj = new Object();
-}
+
 
 addLinkBtn.onclick = (e) => {
     e.preventDefault();

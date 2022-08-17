@@ -66,63 +66,170 @@ if (+hours >= 12 && +hours < 18) bgSearchWord = 'afternoon';
 if (+hours >= 18 && +hours < 24) bgSearchWord = 'evening';
 if (+hours >= 0 && +hours < 6) bgSearchWord = 'night';
 
-let bgNum = Math.trunc(Math.random() * (21 - 1) + 1) + '';
-bgNum = bgNum.padStart(2, '0');
-document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
 
-let images = [];
-for (let i = 1, j = 1; i < 21; i++) {
-    j = String(i).padStart(2, '0');
-    images[i] = new Image();
-    images[i].src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${j}.jpg`;
+
+function setImgGit() {
+    if (+hours >= 6 && +hours < 12) bgSearchWord = 'morning';
+    if (+hours >= 12 && +hours < 18) bgSearchWord = 'afternoon';
+    if (+hours >= 18 && +hours < 24) bgSearchWord = 'evening';
+    if (+hours >= 0 && +hours < 6) bgSearchWord = 'night';
+
+    let bgNum = Math.trunc(Math.random() * (21 - 1) + 1) + '';
+    bgNum = bgNum.padStart(2, '0');
+    document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
+    if ((+bgNum + 1) < 21) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum + 1).padStart(2, '0')}.jpg`);
+    if ((+bgNum - 1) > 0) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum - 1).padStart(2, '0')}.jpg`);
+
+    document.querySelector('.arrow-left').addEventListener('click', () => {
+        bgNum = +bgNum;
+        bgNum === 1 ? bgNum = 20 : bgNum--;
+        bgNum = String(bgNum).padStart(2, '0');
+        document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
+        if ((+bgNum + 1) < 21) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum + 1).padStart(2, '0')}.jpg`);
+        if ((+bgNum - 1) > 0) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum - 1).padStart(2, '0')}.jpg`);
+    })
+
+    document.querySelector('.arrow-right').addEventListener('click', () => {
+        bgNum = +bgNum;
+        bgNum === 20 ? bgNum = 1 : bgNum++;
+        bgNum = String(bgNum).padStart(2, '0');
+        document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
+        if ((+bgNum + 1) < 21) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum + 1).padStart(2, '0')}.jpg`);
+        if ((+bgNum - 1) > 0) preloadImg(`https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${String(+bgNum - 1).padStart(2, '0')}.jpg`);
+    })
+}
+
+function setImgUnsp() {
+    fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uGY17bGixkwPCRtDhfelM4l79HtvEwHTnAaBOz6KMko`, {
+        "method": "GET",
+        "headers": {},
+    })
+        .then(response => response.json())
+        .then(response => {
+            let bgNum = Math.trunc(Math.random() * 10);
+            console.log(bgNum)
+            document.querySelector('.main').style.backgroundImage = `url(${response.results[bgNum].urls.regular})`;
+            if ((+bgNum + 1) < 10) preloadImg(response.results[+bgNum + 1].urls.regular);
+            if ((+bgNum - 1) > 0) preloadImg(response.results[+bgNum - 1].urls.regular);
+
+            document.querySelector('.arrow-left').addEventListener('click', () => {
+                bgNum > 8 ? bgNum = 0 : bgNum++;
+                console.log(bgNum)
+                document.querySelector('.main').style.backgroundImage = `url(${response.results[bgNum].urls.regular})`;
+                if ((+bgNum + 1) < 10) preloadImg(response.results[+bgNum + 1].urls.regular);
+                if ((+bgNum - 1) > 0) preloadImg(response.results[+bgNum - 1].urls.regular);
+
+            })
+            document.querySelector('.arrow-right').addEventListener('click', () => {
+                bgNum < 1 ? bgNum = 9 : bgNum--;
+                console.log(bgNum)
+                document.querySelector('.main').style.backgroundImage = `url(${response.results[bgNum].urls.regular})`;
+                if ((+bgNum + 1) < 10) preloadImg(response.results[+bgNum + 1].urls.regular);
+                if ((+bgNum - 1) > 0) preloadImg(response.results[+bgNum - 1].urls.regular);
+            });
+        })
+
+        .catch(err => {
+            console.error(err);
+        });
 }
 
 
-document.querySelector('.arrow-left').addEventListener('click', () => {
-    bgNum = +bgNum;
-    bgNum === 1 ? bgNum = 20 : bgNum--;
-    bgNum = String(bgNum).padStart(2, '0');
-    document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
-})
-
-document.querySelector('.arrow-right').addEventListener('click', () => {
-    bgNum = +bgNum;
-    bgNum === 20 ? bgNum = 1 : bgNum++;
-    bgNum = String(bgNum).padStart(2, '0');
-    document.querySelector('.main').style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${bgSearchWord}/${bgNum}.jpg)`;
-})
+function setImgFlickr() {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=b25de9c0d455992947676928317a4feb&tags=${bgSearchWord}&extras=url_h&format=json&nojsoncallback=1`, {
+        "method": "GET",
+        "headers": {},
+    })
+        .then(response => response.json())
+        .then(response => {
+            let bgNum = Math.trunc(Math.random() * (20 - 0) + 0) + '';
+            document.querySelector('.main').style.backgroundImage = `url(${response.photos.photo[bgNum].url_h})`;
+            if ((+bgNum + 1) < 10) preloadImg(response.photos.photo[+bgNum + 1].url_h);
+            if ((+bgNum - 1) > 0) preloadImg(response.photos.photo[+bgNum - 1].url_h);
 
 
+            document.querySelector('.arrow-right').addEventListener('click', () => {
+                bgNum === 20 ? bgNum = 0 : ++bgNum;
+                document.querySelector('.main').style.backgroundImage = `url(${response.photos.photo[bgNum].url_h})`;
+                if ((+bgNum + 1) < 10) preloadImg(response.photos.photo[+bgNum + 1].url_h);
+                if ((+bgNum - 1) > 0) preloadImg(response.photos.photo[+bgNum - 1].url_h);
+            });
+            document.querySelector('.arrow-left').addEventListener('click', () => {
+                bgNum < 1 ? bgNum = 20 : --bgNum;
+                document.querySelector('.main').style.backgroundImage = `url(${response.photos.photo[bgNum].url_h})`;
+                if ((+bgNum + 1) < 10) preloadImg(response.photos.photo[+bgNum + 1].url_h);
+                if ((+bgNum - 1) > 0) preloadImg(response.photos.photo[+bgNum - 1].url_h);
+            });
 
-// fetch(`https://api.unsplash.com/search/photos?query=${bgSearchWord}&client_id=uGY17bGixkwPCRtDhfelM4l79HtvEwHTnAaBOz6KMko`, {
-//     "method": "GET",
-//     "headers": {},
-// })
-//     .then(response => response.json())
-//     .then(response => {
-//         let imgIndex = Math.trunc(Math.random() * 10);
-//         document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
+        })
+        .catch(err => console.error(err));
+}
 
-//         document.querySelector('.arrow-left').addEventListener('click', () => {
-//             imgIndex > 8 ? imgIndex = 0 : imgIndex++;
-//             document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
-//         })
-//         document.querySelector('.arrow-right').addEventListener('click', () => {
-//             imgIndex < 1 ? imgIndex = 9 : imgIndex--;
-//             document.querySelector('.main').style.backgroundImage = `url(${response.results[imgIndex].urls.regular})`;
-//         });
-//         let img;
-//         for (let i = 0; i < response.results.length; i++) {
-//             img = new Image();
-//             img.onload = function () { };
-//             img.src = response.results[i].urls.regular;
-//         }
-//     })
+function preloadImg(imgSrc) {
+    let img = new Image;
+    img.src = imgSrc;
+}
 
-//     .catch(err => {
-//         console.error(err);
-//     });
+let settingsObj = {
+    lang: 'en',
+    bg: 'git',
+    mood: '',
+    hide: {
+        time: 0,
+    },
+};
 
+localStorage.getItem('settingsObj');
+setBg(settingsObj);
+
+//choose bg source
+document.querySelector('#unsplash').onclick = () => {
+    settingsObj.bg = 'unsp';
+    setBg(settingsObj);
+    localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
+}
+document.querySelector('#git').onclick = () => {
+    settingsObj.bg = 'git';
+    localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
+    setBg(settingsObj);
+}
+document.querySelector('#flickr').onclick = () => {
+    settingsObj.bg = 'flickr';
+    localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
+    setBg(settingsObj);
+}
+
+function setBg(obj) {
+    switch (obj.bg) {
+        case 'git':
+            setImgGit();
+            break;
+        case 'unsp':
+            setImgUnsp();
+            break;
+        case 'flickr':
+            setImgFlickr();
+            break;
+        default:
+            return;
+    };
+    if (obj.mood) {
+        setImgUnsp(obj.mood);
+    }
+}
+
+//choose mood
+let moodWord = '';
+const inputMood = document.querySelector('#input-mood');
+inputMood.addEventListener('keypress', e => {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        moodWord = inputMood.value;
+        settingsObj.mood = moodWord;
+        localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
+        setBg(settingsObj)
+    }
+});
 
 
 /*     center view      */

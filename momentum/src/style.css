@@ -221,6 +221,10 @@ body {
     visibility: visible;
 }
 
+.quote-text {
+    cursor: default;
+}
+
 .material-symbols-outlined.md-48 {
     font-size: 48px;
 }

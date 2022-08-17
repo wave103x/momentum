@@ -114,11 +114,49 @@
                     </form>
                 </div>
             </div>
+            <div class="feature settings">
+                <button class=" feature__btn_style">Settings</button>
+                <div class="feature__window_active feature__window">
+                    <div class="settings__item">
+                        <div class="settings-item__title">lang</div>
+                        <div class="settings-item__buttons">
+                            <label><input type="radio" name="lang" value="en" checked>en</label>
+                            <label><input type="radio" name="lang" value="ru" disabled>ru</label>
+                        </div>
+                    </div>
+                    <div class="settings__item">
+                        <div class="settings-item__title">img src</div>
+                        <div class="settings-item__buttons">
+                            <label><input id="git" type="radio" name="img-src" value="git" checked>git</label>
+                            <label><input id="unsplash" type="radio" name="img-src" value="unsplash">unsplash</label>
+                            <label><input id="flickr" type="radio" name="img-src" value="flickr">flickr</label>
+                        </div>
+                    </div>
+                    <div class="settings__item">
+                        <div class="settings-item__title">img mood</div>
+                        <div class="settings-item__buttons">
+                            <form class="settings__form">
+                                <input id="input-mood" type="text" class="settings__input-mood">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="settings__item">
+                        <div class="settings-item__title">hide widget</div>
+                        <div class="settings-item__buttons">
+                            <label><input type="checkbox" name="hide">time</label>
+                            <label><input type="checkbox" name="hide">day</label>
+                            <label><input type="checkbox" name="hide">greetings</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <div class="credits">
             <div>&copy; 2022</div>
-            <a href="https://github.com/wave103x" target="_blank"><img class="credits__logo" src="./assets/githubLogo.svg" alt="git logo"></a>
-            <a href="https://rs.school/js-stage0/" target="_blank"><img class="credits__logo" src="./assets/rs_school_js.svg" alt="RS School logo"></a>
+            <a href="https://github.com/wave103x" target="_blank"><img class="credits__logo"
+                    src="./assets/githubLogo.svg" alt="git logo"></a>
+            <a href="https://rs.school/js-stage0/" target="_blank"><img class="credits__logo"
+                    src="./assets/rs_school_js.svg" alt="RS School logo"></a>
         </div>
     </main>
 </body>
