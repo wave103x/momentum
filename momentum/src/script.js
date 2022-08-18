@@ -1,13 +1,60 @@
 import './style.css';
 import './style-player.css';
 import './deeds.css';
+import './trans.js';
+import { langObj } from './trans.js';
 import Icon from './assets/githubLogo.svg'
 import Icon2 from './assets/rs_school_js.svg'
+const todayTime = document.querySelector('.time');
+const sayHello = document.querySelector('.hello-to-name');
+const weatherWordInput = document.querySelector('.input-weather-city');
+let weatherSearchWord = '';
+
+const leftArrow = document.querySelector('.arrow-left');
+const rightArrow = document.querySelector('.arrow-right');
+const main = document.querySelector('.main');
+const inputMood = document.querySelector('#input-mood');
+const radiosLang = document.querySelectorAll('input[name="radio-lang"]');
+
+
+//settings
+let settingsObj = {
+    lang: 'en',
+    bg: 'git',
+    mood: '',
+    hide: {
+        time: 0,
+    },
+    city: 'Minsk',
+};
+
+if (localStorage.getItem('settingsObj')) {
+    settingsObj = JSON.parse(localStorage.getItem('settingsObj'));
+
+    inputMood.value = settingsObj.mood;
+    if (settingsObj.lang === 'ru') radiosLang[1].checked = true;
+    else radiosLang[0].checked = true;
+}
+
+function applySettings(obj) {
+    weatherUpdate(obj.city);
+}
+
+switch (settingsObj.bg) {
+    case 'git':
+        setImgGit();
+        break;
+    case 'unsp':
+        setImgUnsp(settingsObj.mood);
+        break;
+    case 'flickr':
+        setImgFlickr(settingsObj.mood);
+        break;
+};
+
 
 
 /*      weather          */
-const weatherWordInput = document.querySelector('.input-weather-city');
-let weatherSearchWord = '';
 
 if (localStorage.getItem('weatherCity')) {
     weatherWordInput.value = JSON.parse(localStorage.getItem('weatherCity'));
@@ -32,8 +79,8 @@ weatherWordInput.addEventListener('keypress', e => {
 
 });
 
-function weatherUpdate(city = 'Minsk') {
-    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&lang=en&key=4BSGFC52XJ96N6F5WJFYM8M4P&contentType=json`, {
+function weatherUpdate(lang = 'en', city = 'Minsk') {
+    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&lang=${lang}&key=4BSGFC52XJ96N6F5WJFYM8M4P&contentType=json`, {
         "method": "GET",
         "headers": {
         }
@@ -63,36 +110,60 @@ function showInvalidWeather() {
 }
 
 /*      backgorund       */
-const leftArrow = document.querySelector('.arrow-left');
-const rightArrow = document.querySelector('.arrow-right');
-const main = document.querySelector('.main');
-const inputMood = document.querySelector('#input-mood');
 
-let settingsObj = {
-    lang: 'en',
-    bg: 'git',
-    mood: '',
-    hide: {
-        time: 0,
-    },
-};
 
-if (localStorage.getItem('settingsObj')) {
-    settingsObj = JSON.parse(localStorage.getItem('settingsObj'));
-    inputMood.value = settingsObj.mood;
+
+
+
+//show time
+
+
+const dateUpdate = (lang) => {
+    let now = new Date();
+    let seconds = String(now.getSeconds()).padStart(2, '0');
+    let hours = String(now.getHours()).padStart(2, '0');
+    let minutes = String(now.getMinutes()).padStart(2, '0');
+    todayTime.textContent = `${hours} : ${minutes} : ${seconds}`;
+    document.querySelector('.center-date').textContent = now.toLocaleDateString('en-UK', { weekday: 'long', month: 'long', day: 'numeric' });
+
+    if (lang === 'en') {
+        if (+hours >= 6 && +hours < 12) sayHello.textContent = 'Good morning,';
+        if (+hours >= 12 && +hours < 18) sayHello.textContent = 'Good afternoon,';
+        if (+hours >= 18 && +hours < 24) sayHello.textContent = 'Good evening,';
+        if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
+    }
+    if (lang === 'ru') {
+        if (+hours >= 6 && +hours < 12) sayHello.textContent = 'Доброе утречко,';
+        if (+hours >= 12 && +hours < 18) sayHello.textContent = 'Добрый денёк,';
+        if (+hours >= 18 && +hours < 24) sayHello.textContent = 'Добрый вечерок,';
+        if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Ночной привет,';
+    }
 }
-switch (settingsObj.bg) {
-    case 'git':
-        setImgGit();
-        break;
-    case 'unsp':
-        setImgUnsp(settingsObj.mood);
-        break;
-    case 'flickr':
-        setImgFlickr(settingsObj.mood);
-        break;
-};
+dateUpdate(settingsObj.lang);
+setInterval(dateUpdate(settingsObj.lang), 1000);
 
+
+//lang change
+function capitalFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+if (settingsObj.lang !== 'en') changeLang(settingsObj.lang)
+
+function changeLang(lang) {
+    dateUpdate(settingsObj.lang);
+    document.querySelector('title').textContent = capitalFirstLetter(langObj['title'][lang]);
+}
+
+for (let i = 0; i < radiosLang.length; i++)
+    radiosLang[i].addEventListener('click', e => {
+        settingsObj.lang = radiosLang[i].value;
+        localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
+        changeLang(radiosLang[i].value);
+    });
+
+
+//bg
 inputMood.addEventListener('keypress', e => {
     if (e.keyCode === 13) {
         e.preventDefault();
@@ -253,25 +324,7 @@ function preloadImg(imgSrc) {
 
 /*     center view      */
 
-//show time
-const todayTime = document.querySelector('.time');
-const sayHello = document.querySelector('.hello-to-name');
 
-const dateUpdate = () => {
-    let now = new Date();
-    let seconds = String(now.getSeconds()).padStart(2, '0');
-    let hours = String(now.getHours()).padStart(2, '0');
-    let minutes = String(now.getMinutes()).padStart(2, '0');
-    todayTime.textContent = `${hours} : ${minutes} : ${seconds}`;
-    document.querySelector('.center-date').textContent = now.toLocaleDateString('en-UK', { weekday: 'long', month: 'long', day: 'numeric' });
-
-    if (+hours >= 6 && +hours < 12) sayHello.textContent = 'Good morning,';
-    if (+hours >= 12 && +hours < 18) sayHello.textContent = 'Good afternoon,';
-    if (+hours >= 18 && +hours < 24) sayHello.textContent = 'Good evening,';
-    if (+hours >= 0 && +hours < 6) sayHello.textContent = 'Good night,';
-}
-dateUpdate();
-setInterval(dateUpdate, 1000);
 
 //get unputed name and update input width
 const inputName = document.querySelector('.inputName');
@@ -329,6 +382,8 @@ document.querySelector('.audio-container').classList.add('visible');
 document.querySelector('.links').classList.add('visible');
 document.querySelector('.deeds').classList.add('visible');
 
+const audio = document.querySelector('.audio');
+
 
 document.querySelector('#hide-time').addEventListener('click', () => {
     document.querySelector('.time').classList.toggle('hide');
@@ -346,6 +401,12 @@ document.querySelector('#weather').addEventListener('click', () => {
     document.querySelector('.weather').classList.toggle('hide');
 });
 document.querySelector('#audio').addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+    }
+    else {
+        audio.pause();
+    }
     document.querySelector('.audio-container').classList.toggle('hide');
 });
 document.querySelector('#links').addEventListener('click', () => {
