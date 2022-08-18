@@ -164,6 +164,21 @@ body {
     right: 2rem;
 }
 
+.icon-button {
+    color: rgba(255, 255, 255, 0.6);
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.icon-button:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.icon-button:active {
+    color: rgba(255, 255, 255, 0.6);
+}
+
 .quotes {
     position: absolute;
     width: clamp(300px, 50%, 900px);
@@ -189,21 +204,6 @@ body {
 .quotes-text-active {
     transform: translate(-50%, 13%);
 
-}
-
-.icon-button {
-    color: rgba(255, 255, 255, 0.6);
-    user-select: none;
-    transition: color 0.2s;
-}
-
-.icon-button:hover {
-    cursor: pointer;
-    color: white;
-}
-
-.icon-button:active {
-    color: rgba(255, 255, 255, 0.6);
 }
 
 .quote-refresh {
@@ -258,3 +258,18 @@ body {
     opacity: 1;
 }
 
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+    scale: 1;
+    /* transform: scale(1); */
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    scale: 0.8;
+    /* transform: scale(0.8); */
+}
