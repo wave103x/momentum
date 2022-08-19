@@ -80,8 +80,9 @@ switch (settingsObj.bg) {
 //change lang
 
 function changeLang(lang) {
-    if (lang === 'ru' && settingsObj.city.toLocaleLowerCase() === 'minsk') settingsObj.city = 'Минск'
-    if (lang === 'en' && settingsObj.city.toLocaleLowerCase() === 'минск') settingsObj.city = 'Minsk'
+    if (lang === 'ru' && settingsObj.city.toLocaleLowerCase() === 'minsk') settingsObj.city = 'Минск';
+    if (lang === 'en' && settingsObj.city.toLocaleLowerCase() === 'минск') settingsObj.city = 'Minsk';
+    
     document.title = capitalFirstLetter(langObj['title'][lang]);
     document.querySelector('input[name="nameChoose"]').placeholder = langObj['enter-name'][lang]
     document.querySelector('input[name="weatherCity"]').placeholder = langObj['enter-city'][lang]
