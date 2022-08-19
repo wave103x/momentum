@@ -82,7 +82,7 @@ switch (settingsObj.bg) {
 function changeLang(lang) {
     if (lang === 'ru' && settingsObj.city.toLocaleLowerCase() === 'minsk') settingsObj.city = 'Минск';
     if (lang === 'en' && settingsObj.city.toLocaleLowerCase() === 'минск') settingsObj.city = 'Minsk';
-    
+
     document.title = capitalFirstLetter(langObj['title'][lang]);
     document.querySelector('input[name="nameChoose"]').placeholder = langObj['enter-name'][lang]
     document.querySelector('input[name="weatherCity"]').placeholder = langObj['enter-city'][lang]
@@ -465,6 +465,3 @@ document.querySelector('#deeds').addEventListener('click', () => {
 function capitalFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
-
-

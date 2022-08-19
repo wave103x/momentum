@@ -76,11 +76,50 @@ const langObj = {
     "enter-city": {
         "en": "[Enter city]",
         "ru": "[Введите город]",
-    }
-    ,
+    },
     "temperature": {
         "en": "[Invalid city]",
         "ru": "[Неверный город]",
+    }
+    ,
+    "lng-time": {
+        "en": "time",
+        "ru": "время",
+    }
+    ,
+    "lng-day": {
+        "en": "date",
+        "ru": "дата",
+    }
+    ,
+    "lng-greet": {
+        "en": "greetings",
+        "ru": "приветствие",
+    }
+    ,
+    "lng-quotes": {
+        "en": "quote",
+        "ru": "цитата",
+    }
+    ,
+    "lng-weather": {
+        "en": "weather",
+        "ru": "погода",
+    }
+    ,
+    "lng-audio": {
+        "en": "audio",
+        "ru": "аудио",
+    }
+    ,
+    "lng-links": {
+        "en": "links",
+        "ru": "ссылки",
+    }
+    ,
+    "lng-deeds": {
+        "en": "to do",
+        "ru": "список дел",
     }
 }
 
