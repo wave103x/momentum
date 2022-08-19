@@ -61,8 +61,10 @@
                 </div>
             </figure>
             <article class="weather">
-                <input name="weatherCity" type="text" class="input-weather-city" autocomplete="off"
-                    placeholder="[Enter city]">
+                <form>
+                    <input name="weatherCity" type="text" class="input-weather-city" autocomplete="off"
+                        placeholder="[Enter city]">
+                </form>
 
                 <div class="temp-icon">
                     <div class="temp-conditions">
@@ -81,9 +83,9 @@
             </div>
             <div class="center-date opacity70"></div>
             <div class="greetings">
-                <div class="hello-to-name"></div>
+                <div class="lng-hello hello-to-name"></div>
                 <input class="inputName" type="text" name="nameChoose" autocomplete="off" placeholder="[Enter name]"
-                    oninput="if (this.value) {localStorage.setItem('myName', this.value.toString());this.size = this.value.length;} else this.size = 8;">
+                    oninput="if (this.value) {localStorage.setItem('myName', this.value.toString());this.size = this.value.length;} else this.size = 9;">
             </div>
         </section>
         <section class="quotes">
@@ -115,10 +117,10 @@
                 </div>
             </div>
             <div class="feature settings">
-                <button class=" feature__btn_style">Settings</button>
-                <div class="feature__window_active feature__window">
+                <button class="settings__btn feature__btn_style">Settings</button>
+                <div class="settings-window feature__window">
                     <div class="settings__item">
-                        <div class="settings-item__title">lang</div>
+                        <div class="set-lang settings-item__title">lang</div>
                         <div class="settings-item__buttons">
                             <form class="settings-form__lang">
                                 <label><input type="radio" name="radio-lang" value="en">en</label>
@@ -127,7 +129,7 @@
                         </div>
                     </div>
                     <div class="settings__item">
-                        <div class="settings-item__title">img src</div>
+                        <div class="settings-item__title set-img">img src</div>
                         <div class="settings-item__buttons">
                             <label><input id="git" type="radio" name="img-src" value="git">git</label>
                             <label><input id="unsplash" type="radio" name="img-src" value="unsplash">unsplash</label>
@@ -135,24 +137,24 @@
                         </div>
                     </div>
                     <div class="settings__item">
-                        <div class="settings-item__title">img mood</div>
+                        <div class="settings-item__title set-mood">img mood</div>
                         <div class="settings-item__buttons">
                             <form class="settings__form">
-                                <input id="input-mood" type="text" class="settings__input-mood">
+                                <input id="input-mood" type="text" class="settings__input-mood feature__input-text">
                             </form>
                         </div>
                     </div>
                     <div class="settings__item">
-                        <div class="settings-item__title">hide widget</div>
+                        <div class="settings-item__title set-hide">hide widget</div>
                         <div class="settings-item__buttons">
-                            <label><input id="hide-time" type="checkbox" name="hide">time</label>
-                            <label><input id="day" type="checkbox" name="hide">day</label>
-                            <label><input id="greet" type="checkbox" name="hide">greetings</label>
-                            <label><input id="quote" type="checkbox" name="hide">quote</label>
+                            <label><input id="time" type="checkbox" name="hide">time</label>
+                            <label><input id="center-date" type="checkbox" name="hide">day</label>
+                            <label><input id="greetings" type="checkbox" name="hide">greetings</label>
+                            <label><input id="quotes" type="checkbox" name="hide">quote</label>
                             <label><input id="weather" type="checkbox" name="hide">weather</label>
-                            <label><input id="audio" type="checkbox" name="hide">audio</label>
+                            <label><input id="audio-container" type="checkbox" name="hide">audio</label>
                             <label><input id="links" type="checkbox" name="hide">links</label>
-                            <label><input id="todo" type="checkbox" name="hide">to do</label>
+                            <label><input id="deeds" type="checkbox" name="hide">to do</label>
                         </div>
                     </div>
                 </div>

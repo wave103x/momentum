@@ -1,0 +1,63 @@
+{
+    "ru": [
+        {
+            "text": "Успех — дитя смелости",
+            "author": "Бенджамин Дизраэли"
+        },
+        {
+            "text": "Бросить курить легко. Я сам бросал раз сто",
+            "author": "Марк Твен"
+        },
+        {
+            "text": "Пишите код так, как будто сопровождать его будет склонный к насилию психопат, который знает, где вы живете",
+            "author": "Стив Макконнелл"
+        },
+        {
+            "text": "Сложность программы растет до тех пор, пока не превысит способности программиста",
+            "author": "Артур Блох. Законы Мэрфи"
+        },
+        {
+            "text": "Ходить по воде и разрабатывать программы, следуя ТЗ, очень просто… если они заморожены",
+            "author": "И. Берард"
+        },
+        {
+            "text": "Чем меньше женщину мы любим, тем легче нравимся мы ей",
+            "author": "A.C.Пушкин"
+        },
+        {
+            "text": "Если тебе тяжело, значит ты поднимаешься в гору. Если тебе легко, значит ты летишь в пропасть",
+            "author": "Генри Форд"
+        }
+        ,
+        {
+            "text": "Мой способ шутить – это говорить правду. На свете нет ничего смешнее",
+            "author": "Бернард Шоу"
+        }
+    ],
+    "en": [
+        {
+            "text": "Success is the child of audacity",
+            "author": "Benjamin Disraeli"
+        },
+        {
+            "text": "It's easy to quit smoking. I've done it hundreds of time",
+            "author": "Mark Tven"
+        },
+        {
+            "text": "All that glitters is not gold",
+            "author": "William Shakespeare"
+        },
+        {
+            "text": "Elementary, my dear Watson",
+            "author": "Sherlock Holmes"
+        },
+        {
+            "text": "For those to whom much is given, much is required",
+            "author": "the Bible"
+        },
+        {
+            "text": "Hell has no fury like a woman scorned",
+            "author": "William Congreve"
+        }
+    ]
+}

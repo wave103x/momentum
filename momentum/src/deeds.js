@@ -9,6 +9,12 @@ document.querySelector('.deeds__btn').onclick = () => {
 document.querySelector('.links__btn').onclick = () => {
     document.querySelector('.links-window').classList.toggle('feature__window_active');
     document.querySelector('.deeds-window__tasks').classList.remove('feature__window_active');
+    document.querySelector('.settings-window').classList.remove('feature__window_active');
+}
+document.querySelector('.settings__btn').onclick = () => {
+    document.querySelector('.settings-window').classList.toggle('feature__window_active');
+    document.querySelector('.links-window').classList.remove('feature__window_active');
+    document.querySelector('.deeds-window__tasks').classList.remove('feature__window_active');
 }
 
 const inputTask = document.querySelector('.deeds__input-task');
