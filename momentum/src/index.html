@@ -44,10 +44,10 @@
                         <button class="playpause track-button track-switch-btn" type="button"><span
                                 class="material-symbols-outlined md-30">play_arrow</span></button>
 
-                        <button class="next-track track-button track-switch-btn" type="button"><span
+                        <button class="next-track track-button track-switch-btn" type="button"><spaaction="#"n
                                 class="material-symbols-outlined">
                                 skip_next
-                            </span></button>
+                            </spaaction=></button>
                         <div class="volume-block">
                             <button class="volume-icon track-button" type="button"><span
                                     class="material-symbols-outlined">
@@ -61,7 +61,7 @@
                 </div>
             </figure>
             <article class="weather">
-                <form>
+                <form action="#">
                     <input name="weatherCity" type="text" class="input-weather-city" autocomplete="off"
                         placeholder="[Enter city]">
                 </form>
@@ -122,24 +122,41 @@
                     <div class="settings__item">
                         <div class="set-lang settings-item__title">lang</div>
                         <div class="settings-item__buttons">
-                            <form class="settings-form__lang">
-                                <label><input type="radio" name="radio-lang" value="en" checked>en</label>
-                                <label><input type="radio" name="radio-lang" value="ru">ru</label>
+                            <form action="#" class="settings-form">
+                                <div class="form__toggle">
+                                    <input id="radio-en" type="radio" name="radio-lang" value="en" checked>
+                                    <label for="radio-en" class="label-radio-add">en</label>
+                                </div>
+                                <div class="form__toggle">
+                                    <input id="radio-ru" type="radio" name="radio-lang" value="ru">
+                                    <label for="radio-ru">ru</label>
+                                </div>
                             </form>
                         </div>
                     </div>
                     <div class="settings__item">
                         <div class="settings-item__title set-img">img src</div>
                         <div class="settings-item__buttons">
-                            <label><input id="git" type="radio" name="img-src" value="git">git</label>
-                            <label><input id="unsplash" type="radio" name="img-src" value="unsplash">unsplash</label>
-                            <label><input id="flickr" type="radio" name="img-src" value="flickr">flickr</label>
+                            <form action="#" class="settings-form">
+                                <div class="form__toggle">
+                                    <input id="git" type="radio" name="img-src" value="git">
+                                    <label for="git">git</label>
+                                </div>
+                                <div class="form__toggle">
+                                    <input id="unsplash" type="radio" name="img-src" value="unsplash">
+                                    <label for="unsplash">unsplash</label>
+                                </div>
+                                <div class="form__toggle">
+                                    <input id="flickr" type="radio" name="img-src" value="flickr">
+                                    <label for="flickr">flickr</label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="settings__item">
                         <div class="settings-item__title set-mood">img mood</div>
                         <div class="settings-item__buttons">
-                            <form class="settings__form">
+                            <form class="settings-form">
                                 <input id="input-mood" type="text" class="settings__input-mood feature__input-text">
                             </form>
                         </div>
@@ -147,35 +164,35 @@
                     <div class="settings__item">
                         <div class="settings-item__title set-hide">hide widget</div>
                         <div class="settings-item__buttons">
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="time" type="checkbox" name="hide">
                                 <label for="time" class="lng-time">time</label>
                             </div>
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="center-date" type="checkbox" name="hide">
                                 <label for="center-date" class="lng-day">day</label>
                             </div>
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="greetings" type="checkbox" name="hide">
                                 <label for="greetings" class="lng-greet">greetings</label>
                             </div>
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="quotes" type="checkbox" name="hide">
                                 <label for="quotes" class="lng-quotes">quote</label>
                             </div>
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="weather" type="checkbox" name="hide">
                                 <label for="weather" class="lng-weather">weather</label>
                             </div>
-                           <div>
-                               <input id="audio-container" type="checkbox" name="hide">
+                            <div class="checkbox-hiding">
+                                <input id="audio-container" type="checkbox" name="hide">
                                 <label for="audio-container" class="lng-audio">audio</label>
-                           </div>
-                            <div>
+                            </div>
+                            <div class="checkbox-hiding">
                                 <input id="links" type="checkbox" name="hide">
                                 <label for="links" class="lng-links">links</label>
                             </div>
-                            <div>
+                            <div class="checkbox-hiding">
                                 <input id="deeds" type="checkbox" name="hide">
                                 <label for="deeds" class="lng-deeds">to do</label>
                             </div>

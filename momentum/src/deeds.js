@@ -3,8 +3,8 @@
 
 document.querySelector('.deeds__btn').onclick = () => {
     document.querySelector('.deeds-window__tasks').classList.toggle('feature__window_active');
+    document.querySelector('.settings-window').classList.remove('feature__window_active');
     document.querySelector('.links-window').classList.remove('feature__window_active');
-    // localStorage.setItem('deeds-active', '1');
 }
 document.querySelector('.links__btn').onclick = () => {
     document.querySelector('.links-window').classList.toggle('feature__window_active');

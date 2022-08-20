@@ -3,7 +3,7 @@ import './style-player.css';
 import './deeds.css';
 import './trans.js';
 import { langObj } from './trans.js';
-import quotesJson from './assets/quotes.json';
+import './assets/quotes.json';
 import Icon from './assets/githubLogo.svg'
 import Icon2 from './assets/rs_school_js.svg'
 const todayTime = document.querySelector('.time');
@@ -188,7 +188,6 @@ function setImgGit() {
     let dayTime = whatDayTime();
     let bgNum = Math.trunc(Math.random() * (21 - 1) + 1) + '';
     bgNum = bgNum.padStart(2, '0');
-
     main.style.backgroundImage = `url(https://raw.githubusercontent.com/wave103x/stage1-tasks/assets/images/${dayTime}/${bgNum}.jpg)`;
     if ((+bgNum + 1) < 21) preloadImg(`https://raw.githubusercontent.com/wave103x/stage1-tasks/assets/images/${dayTime}/${String(+bgNum + 1).padStart(2, '0')}.jpg`);
     if ((+bgNum - 1) > 0) preloadImg(`https://raw.githubusercontent.com/wave103x/stage1-tasks/assets/images/${dayTime}/${String(+bgNum - 1).padStart(2, '0')}.jpg`);
@@ -308,8 +307,8 @@ function whatDayTime() {
 //choose bg source
 document.querySelector('#git').onclick = () => {
     settingsObj.bg = 'git';
-    localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
     setImgGit();
+    localStorage.setItem('settingsObj', JSON.stringify(settingsObj));
 }
 document.querySelector('#unsplash').onclick = () => {
     settingsObj.bg = 'unsp';
