@@ -1,2 +1,1 @@
-# wave103x-JSFEPRESCHOOL2022Q2
-Private repository for @wave103x
+[deploy](https://wave103x.github.io/momentum-public/)
