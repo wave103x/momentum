@@ -1,1 +1,1 @@
-[deploy](https://wave103x.github.io/momentum-public/)
+[deploy](https://wave103x-momentum.netlify.app/)
